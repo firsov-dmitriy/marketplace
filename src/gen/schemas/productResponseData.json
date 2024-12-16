@@ -1,0 +1,1 @@
+{"type":"object","properties":{"id":{"type":"number"},"name":{"type":"string"},"description":{"type":"string"},"createdAt":{"format":"date-time","type":"string"},"published":{"type":"boolean"},"authorId":{"type":"string"}},"required":["id","name","description","createdAt","published","authorId"],"x-readme-ref-name":"ProductResponseData"}
