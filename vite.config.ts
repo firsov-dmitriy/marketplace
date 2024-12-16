@@ -9,7 +9,7 @@ export default defineConfig({
       "/api": {
         target: "https://nest-profile-v2.vercel.app",
         changeOrigin: true,
-        secure: false,
+        secure: true,
       },
     },
   },
