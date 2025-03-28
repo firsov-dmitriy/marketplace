@@ -4,7 +4,7 @@ import type { SignUpResponse } from './SignUpResponse.ts'
 /**
  * @description Welcome! You registration
  */
-export type AuthControllerCreate200 = SignUpResponse
+export type AuthControllerCreate201 = SignUpResponse
 
 /**
  * @description Bad request
@@ -13,10 +13,10 @@ export type AuthControllerCreate400 = any
 
 export type AuthControllerCreateMutationRequest = RegisterAuthDto
 
-export type AuthControllerCreateMutationResponse = AuthControllerCreate200
+export type AuthControllerCreateMutationResponse = AuthControllerCreate201
 
 export type AuthControllerCreateMutation = {
-  Response: AuthControllerCreate200
+  Response: AuthControllerCreate201
   Request: AuthControllerCreateMutationRequest
   Errors: AuthControllerCreate400
 }

@@ -1,1 +1,1 @@
-{"type":"object","properties":{"name":{"type":"string"},"description":{"type":"string"},"price":{"type":"number"},"published":{"type":"boolean"}},"required":["name","description","price"],"x-readme-ref-name":"CreateProductDto"}
+{"type":"object","properties":{"name":{"type":"string"},"description":{"type":"string"},"price":{"type":"number"},"published":{"type":"boolean"},"imageUrl":{"type":"string"}},"required":["name","description","price","published","imageUrl"],"x-readme-ref-name":"CreateProductDto"}

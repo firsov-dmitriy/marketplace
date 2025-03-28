@@ -1,5 +1,5 @@
-import client from '../../../../axiosClient.ts'
-import type { RequestConfig } from '../../../../axiosClient.ts'
+import client from '../../../axiosClient.ts'
+import type { RequestConfig } from '../../../axiosClient.ts'
 import type { AuthControllerCreateMutationRequest, AuthControllerCreateMutationResponse, AuthControllerCreate400 } from '../../types/AuthControllerCreate.ts'
 import type { UseMutationOptions } from '@tanstack/react-query'
 import { useMutation } from '@tanstack/react-query'

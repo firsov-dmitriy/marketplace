@@ -15,4 +15,8 @@ export type UpdateProductDto = {
    * @type boolean | undefined
    */
   published?: boolean
+  /**
+   * @type string | undefined
+   */
+  imageUrl?: string
 }

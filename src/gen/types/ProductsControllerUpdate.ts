@@ -1,3 +1,4 @@
+import type { ProductResponse } from './ProductResponse.ts'
 import type { UpdateProductDto } from './UpdateProductDto.ts'
 
 export type ProductsControllerUpdatePathParams = {
@@ -7,7 +8,10 @@ export type ProductsControllerUpdatePathParams = {
   id: string
 }
 
-export type ProductsControllerUpdate200 = any
+/**
+ * @description Edit product
+ */
+export type ProductsControllerUpdate200 = ProductResponse
 
 export type ProductsControllerUpdateMutationRequest = UpdateProductDto
 

@@ -4,6 +4,10 @@ export type { AuthControllerGetProfileSuspenseQueryKey } from './hooks/Auth/useA
 export type { AuthControllerLoginMutationKey } from './hooks/Auth/useAuthControllerLogin.ts'
 export type { AuthControllerResetPasswordMutationKey } from './hooks/Auth/useAuthControllerResetPassword.ts'
 export type { AuthControllerResetPasswordConfirmMutationKey } from './hooks/Auth/useAuthControllerResetPasswordConfirm.ts'
+export type { FilesControllerFindAllQueryKey } from './hooks/Files/useFilesControllerFindAll.ts'
+export type { FilesControllerFindAllSuspenseQueryKey } from './hooks/Files/useFilesControllerFindAllSuspense.ts'
+export type { FilesControllerRemoveMutationKey } from './hooks/Files/useFilesControllerRemove.ts'
+export type { FilesControllerUploadMutationKey } from './hooks/Files/useFilesControllerUpload.ts'
 export type { PostsControllerCreateMutationKey } from './hooks/Posts/usePostsControllerCreate.ts'
 export type { PostsControllerFindAllQueryKey } from './hooks/Posts/usePostsControllerFindAll.ts'
 export type { PostsControllerFindAllSuspenseQueryKey } from './hooks/Posts/usePostsControllerFindAllSuspense.ts'
@@ -18,17 +22,8 @@ export type { ProductsControllerFindOneQueryKey } from './hooks/Products/useProd
 export type { ProductsControllerFindOneSuspenseQueryKey } from './hooks/Products/useProductsControllerFindOneSuspense.ts'
 export type { ProductsControllerRemoveMutationKey } from './hooks/Products/useProductsControllerRemove.ts'
 export type { ProductsControllerUpdateMutationKey } from './hooks/Products/useProductsControllerUpdate.ts'
-export type { S3ManagerControllerListBucketContentsQueryKey } from './hooks/useS3ManagerControllerListBucketContents.ts'
-export type { S3ManagerControllerListBucketContentsSuspenseQueryKey } from './hooks/useS3ManagerControllerListBucketContentsSuspense.ts'
-export type { VercelBlobControllerFindAllQueryKey } from './hooks/useVercelBlobControllerFindAll.ts'
-export type { VercelBlobControllerFindAllSuspenseQueryKey } from './hooks/useVercelBlobControllerFindAllSuspense.ts'
-export type { VercelBlobControllerFindOneQueryKey } from './hooks/useVercelBlobControllerFindOne.ts'
-export type { VercelBlobControllerFindOneSuspenseQueryKey } from './hooks/useVercelBlobControllerFindOneSuspense.ts'
-export type { VercelBlobControllerRemoveMutationKey } from './hooks/useVercelBlobControllerRemove.ts'
-export type { VercelBlobControllerUpdateMutationKey } from './hooks/useVercelBlobControllerUpdate.ts'
-export type { VercelBlobControllerUploadFileMutationKey } from './hooks/useVercelBlobControllerUploadFile.ts'
 export type {
-  AuthControllerCreate200,
+  AuthControllerCreate201,
   AuthControllerCreate400,
   AuthControllerCreateMutationRequest,
   AuthControllerCreateMutationResponse,
@@ -55,7 +50,27 @@ export type {
   AuthControllerResetPasswordConfirmMutation,
 } from './types/AuthControllerResetPasswordConfirm.ts'
 export type { CreatePostDto } from './types/CreatePostDto.ts'
+export type { CreatePostResponse } from './types/CreatePostResponse.ts'
+export type { CreatePostResponseData } from './types/CreatePostResponseData.ts'
 export type { CreateProductDto } from './types/CreateProductDto.ts'
+export type { DeleteFilesDto } from './types/DeleteFilesDto.ts'
+export type { FilesControllerFindAll201, FilesControllerFindAllQueryResponse, FilesControllerFindAllQuery } from './types/FilesControllerFindAll.ts'
+export type {
+  FilesControllerRemove200,
+  FilesControllerRemoveMutationRequest,
+  FilesControllerRemoveMutationResponse,
+  FilesControllerRemoveMutation,
+} from './types/FilesControllerRemove.ts'
+export type {
+  FilesControllerUpload201,
+  FilesControllerUploadMutationRequest,
+  FilesControllerUploadMutationResponse,
+  FilesControllerUploadMutation,
+} from './types/FilesControllerUpload.ts'
+export type { FileUploadResponse } from './types/FileUploadResponse.ts'
+export type { FileUploadResponseData } from './types/FileUploadResponseData.ts'
+export type { GetInfoPostResponse } from './types/GetInfoPostResponse.ts'
+export type { GetPostResponse } from './types/GetPostResponse.ts'
 export type { LoginAuthDto } from './types/LoginAuthDto.ts'
 export type { MetaDto } from './types/MetaDto.ts'
 export type {
@@ -87,7 +102,7 @@ export type {
 export type { ProductResponse } from './types/ProductResponse.ts'
 export type { ProductResponseData } from './types/ProductResponseData.ts'
 export type {
-  ProductsControllerCreate200,
+  ProductsControllerCreate201,
   ProductsControllerCreateMutationRequest,
   ProductsControllerCreateMutationResponse,
   ProductsControllerCreateMutation,
@@ -117,53 +132,20 @@ export type { RegisterAuthDto } from './types/RegisterAuthDto.ts'
 export type { ResetPasswordAuth } from './types/ResetPasswordAuth.ts'
 export type { ResetPasswordConfirmAuth } from './types/ResetPasswordConfirmAuth.ts'
 export type { RoleEnum, Role } from './types/Role.ts'
-export type {
-  S3ManagerControllerListBucketContents200,
-  S3ManagerControllerListBucketContentsQueryResponse,
-  S3ManagerControllerListBucketContentsQuery,
-} from './types/S3ManagerControllerListBucketContents.ts'
 export type { SignInResponse } from './types/SignInResponse.ts'
 export type { SignInResponseData } from './types/SignInResponseData.ts'
 export type { SignUpResponse } from './types/SignUpResponse.ts'
 export type { SignUpResponseData } from './types/SignUpResponseData.ts'
 export type { UpdatePostDto } from './types/UpdatePostDto.ts'
 export type { UpdateProductDto } from './types/UpdateProductDto.ts'
-export type { UpdateVercelBlobDto } from './types/UpdateVercelBlobDto.ts'
-export type {
-  VercelBlobControllerFindAll200,
-  VercelBlobControllerFindAllQueryResponse,
-  VercelBlobControllerFindAllQuery,
-} from './types/VercelBlobControllerFindAll.ts'
-export type {
-  VercelBlobControllerFindOnePathParams,
-  VercelBlobControllerFindOne200,
-  VercelBlobControllerFindOneQueryResponse,
-  VercelBlobControllerFindOneQuery,
-} from './types/VercelBlobControllerFindOne.ts'
-export type {
-  VercelBlobControllerRemovePathParams,
-  VercelBlobControllerRemove200,
-  VercelBlobControllerRemoveMutationResponse,
-  VercelBlobControllerRemoveMutation,
-} from './types/VercelBlobControllerRemove.ts'
-export type {
-  VercelBlobControllerUpdatePathParams,
-  VercelBlobControllerUpdate200,
-  VercelBlobControllerUpdateMutationRequest,
-  VercelBlobControllerUpdateMutationResponse,
-  VercelBlobControllerUpdateMutation,
-} from './types/VercelBlobControllerUpdate.ts'
-export type {
-  VercelBlobControllerUploadFile201,
-  VercelBlobControllerUploadFileMutationRequest,
-  VercelBlobControllerUploadFileMutationResponse,
-  VercelBlobControllerUploadFileMutation,
-} from './types/VercelBlobControllerUploadFile.ts'
 export { authControllerCreate } from './clients/authControllerCreate.ts'
 export { authControllerGetProfile } from './clients/authControllerGetProfile.ts'
 export { authControllerLogin } from './clients/authControllerLogin.ts'
 export { authControllerResetPassword } from './clients/authControllerResetPassword.ts'
 export { authControllerResetPasswordConfirm } from './clients/authControllerResetPasswordConfirm.ts'
+export { filesControllerFindAll } from './clients/filesControllerFindAll.ts'
+export { filesControllerRemove } from './clients/filesControllerRemove.ts'
+export { filesControllerUpload } from './clients/filesControllerUpload.ts'
 export { postsControllerCreate } from './clients/postsControllerCreate.ts'
 export { postsControllerFindAll } from './clients/postsControllerFindAll.ts'
 export { postsControllerFindOne } from './clients/postsControllerFindOne.ts'
@@ -174,12 +156,6 @@ export { productsControllerFindAll } from './clients/productsControllerFindAll.t
 export { productsControllerFindOne } from './clients/productsControllerFindOne.ts'
 export { productsControllerRemove } from './clients/productsControllerRemove.ts'
 export { productsControllerUpdate } from './clients/productsControllerUpdate.ts'
-export { s3ManagerControllerListBucketContents } from './clients/s3ManagerControllerListBucketContents.ts'
-export { vercelBlobControllerFindAll } from './clients/vercelBlobControllerFindAll.ts'
-export { vercelBlobControllerFindOne } from './clients/vercelBlobControllerFindOne.ts'
-export { vercelBlobControllerRemove } from './clients/vercelBlobControllerRemove.ts'
-export { vercelBlobControllerUpdate } from './clients/vercelBlobControllerUpdate.ts'
-export { vercelBlobControllerUploadFile } from './clients/vercelBlobControllerUploadFile.ts'
 export { authControllerCreateMutationKey, useAuthControllerCreate } from './hooks/Auth/useAuthControllerCreate.ts'
 export {
   authControllerGetProfileQueryKey,
@@ -194,6 +170,14 @@ export {
 export { authControllerLoginMutationKey, useAuthControllerLogin } from './hooks/Auth/useAuthControllerLogin.ts'
 export { authControllerResetPasswordMutationKey, useAuthControllerResetPassword } from './hooks/Auth/useAuthControllerResetPassword.ts'
 export { authControllerResetPasswordConfirmMutationKey, useAuthControllerResetPasswordConfirm } from './hooks/Auth/useAuthControllerResetPasswordConfirm.ts'
+export { filesControllerFindAllQueryKey, filesControllerFindAllQueryOptions, useFilesControllerFindAll } from './hooks/Files/useFilesControllerFindAll.ts'
+export {
+  filesControllerFindAllSuspenseQueryKey,
+  filesControllerFindAllSuspenseQueryOptions,
+  useFilesControllerFindAllSuspense,
+} from './hooks/Files/useFilesControllerFindAllSuspense.ts'
+export { filesControllerRemoveMutationKey, useFilesControllerRemove } from './hooks/Files/useFilesControllerRemove.ts'
+export { filesControllerUploadMutationKey, useFilesControllerUpload } from './hooks/Files/useFilesControllerUpload.ts'
 export { postsControllerCreateMutationKey, usePostsControllerCreate } from './hooks/Posts/usePostsControllerCreate.ts'
 export { postsControllerFindAllQueryKey, postsControllerFindAllQueryOptions, usePostsControllerFindAll } from './hooks/Posts/usePostsControllerFindAll.ts'
 export {
@@ -232,37 +216,4 @@ export {
 } from './hooks/Products/useProductsControllerFindOneSuspense.ts'
 export { productsControllerRemoveMutationKey, useProductsControllerRemove } from './hooks/Products/useProductsControllerRemove.ts'
 export { productsControllerUpdateMutationKey, useProductsControllerUpdate } from './hooks/Products/useProductsControllerUpdate.ts'
-export {
-  s3ManagerControllerListBucketContentsQueryKey,
-  s3ManagerControllerListBucketContentsQueryOptions,
-  useS3ManagerControllerListBucketContents,
-} from './hooks/useS3ManagerControllerListBucketContents.ts'
-export {
-  s3ManagerControllerListBucketContentsSuspenseQueryKey,
-  s3ManagerControllerListBucketContentsSuspenseQueryOptions,
-  useS3ManagerControllerListBucketContentsSuspense,
-} from './hooks/useS3ManagerControllerListBucketContentsSuspense.ts'
-export {
-  vercelBlobControllerFindAllQueryKey,
-  vercelBlobControllerFindAllQueryOptions,
-  useVercelBlobControllerFindAll,
-} from './hooks/useVercelBlobControllerFindAll.ts'
-export {
-  vercelBlobControllerFindAllSuspenseQueryKey,
-  vercelBlobControllerFindAllSuspenseQueryOptions,
-  useVercelBlobControllerFindAllSuspense,
-} from './hooks/useVercelBlobControllerFindAllSuspense.ts'
-export {
-  vercelBlobControllerFindOneQueryKey,
-  vercelBlobControllerFindOneQueryOptions,
-  useVercelBlobControllerFindOne,
-} from './hooks/useVercelBlobControllerFindOne.ts'
-export {
-  vercelBlobControllerFindOneSuspenseQueryKey,
-  vercelBlobControllerFindOneSuspenseQueryOptions,
-  useVercelBlobControllerFindOneSuspense,
-} from './hooks/useVercelBlobControllerFindOneSuspense.ts'
-export { vercelBlobControllerRemoveMutationKey, useVercelBlobControllerRemove } from './hooks/useVercelBlobControllerRemove.ts'
-export { vercelBlobControllerUpdateMutationKey, useVercelBlobControllerUpdate } from './hooks/useVercelBlobControllerUpdate.ts'
-export { vercelBlobControllerUploadFileMutationKey, useVercelBlobControllerUploadFile } from './hooks/useVercelBlobControllerUploadFile.ts'
 export { roleEnum } from './types/Role.ts'

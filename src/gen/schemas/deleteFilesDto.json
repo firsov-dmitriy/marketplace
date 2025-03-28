@@ -1,0 +1,1 @@
+{"type":"object","properties":{"url":{"type":"string"}},"required":["url"],"x-readme-ref-name":"DeleteFilesDto"}

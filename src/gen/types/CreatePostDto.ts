@@ -11,4 +11,8 @@ export type CreatePostDto = {
    * @type boolean
    */
   published: boolean
+  /**
+   * @type string, uri
+   */
+  imageUrl: string
 }

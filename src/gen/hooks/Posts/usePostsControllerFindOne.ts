@@ -1,5 +1,5 @@
-import client from '../../../../axiosClient.ts'
-import type { RequestConfig } from '../../../../axiosClient.ts'
+import client from '../../../axiosClient.ts'
+import type { RequestConfig } from '../../../axiosClient.ts'
 import type { PostsControllerFindOneQueryResponse, PostsControllerFindOnePathParams } from '../../types/PostsControllerFindOne.ts'
 import type { QueryKey, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
 import { queryOptions, useQuery } from '@tanstack/react-query'

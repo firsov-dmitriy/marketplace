@@ -1,5 +1,5 @@
-import client from '../../../../axiosClient.ts'
-import type { RequestConfig } from '../../../../axiosClient.ts'
+import client from '../../../axiosClient.ts'
+import type { RequestConfig } from '../../../axiosClient.ts'
 import type {
   PostsControllerUpdateMutationRequest,
   PostsControllerUpdateMutationResponse,

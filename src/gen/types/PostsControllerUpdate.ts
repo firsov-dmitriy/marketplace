@@ -1,3 +1,4 @@
+import type { CreatePostResponse } from './CreatePostResponse.ts'
 import type { UpdatePostDto } from './UpdatePostDto.ts'
 
 export type PostsControllerUpdatePathParams = {
@@ -7,7 +8,10 @@ export type PostsControllerUpdatePathParams = {
   id: string
 }
 
-export type PostsControllerUpdate200 = any
+/**
+ * @description Updated Post
+ */
+export type PostsControllerUpdate200 = CreatePostResponse
 
 export type PostsControllerUpdateMutationRequest = UpdatePostDto
 

@@ -1,27 +1,9 @@
-import type { UpdatePostDto } from './UpdatePostDto.ts'
+import type { GetPostResponse } from './GetPostResponse.ts'
 
 /**
  * @description Posts list
  */
-export type PostsControllerFindAll200 = {
-  /**
-   * @type array | undefined
-   */
-  data?: UpdatePostDto[]
-  /**
-   * @type object | undefined
-   */
-  meta?: {
-    /**
-     * @type string | undefined, date-time
-     */
-    timestamp?: string
-    /**
-     * @type number | undefined
-     */
-    statusCode?: number
-  }
-}
+export type PostsControllerFindAll200 = GetPostResponse
 
 export type PostsControllerFindAllQueryResponse = PostsControllerFindAll200
 

@@ -27,7 +27,7 @@ export const SignIn = () => {
         console.warn(error);
       }
     },
-    [mutateAsync],
+    [mutateAsync, navigate],
   );
   return (
     <FormProvider {...form}>

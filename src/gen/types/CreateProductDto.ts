@@ -12,7 +12,11 @@ export type CreateProductDto = {
    */
   price: number
   /**
-   * @type boolean | undefined
+   * @type boolean
    */
-  published?: boolean
+  published: boolean
+  /**
+   * @type string
+   */
+  imageUrl: string
 }

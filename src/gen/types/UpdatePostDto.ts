@@ -11,4 +11,8 @@ export type UpdatePostDto = {
    * @type boolean | undefined
    */
   published?: boolean
+  /**
+   * @type string | undefined, uri
+   */
+  imageUrl?: string
 }

@@ -50,6 +50,7 @@ export const CreatePost = () => {
           >
             <FormTextField name="title" label="Название" />
             <FormTextField name="text" label="Текс" multiline />
+            <FormTextField name="imageUrl" label="Ссылка на фото" multiline />
 
             <Button variant="contained" type="submit">
               Создать пост

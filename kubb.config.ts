@@ -30,7 +30,7 @@ export default defineConfig(() => {
           path: "hooks",
         },
         client: {
-          importPath: "../../../../axiosClient.ts",
+          importPath: "../../../axiosClient.ts",
         },
       }),
     ],

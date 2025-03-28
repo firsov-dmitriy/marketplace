@@ -1,1 +1,1 @@
-{"type":"object","properties":{"title":{"type":"string"},"text":{"type":"string"},"published":{"type":"boolean"}},"required":["title","text","published"],"x-readme-ref-name":"CreatePostDto"}
+{"type":"object","properties":{"title":{"type":"string"},"text":{"type":"string"},"published":{"type":"boolean"},"imageUrl":{"type":"string","format":"uri"}},"required":["title","text","published","imageUrl"],"x-readme-ref-name":"CreatePostDto"}

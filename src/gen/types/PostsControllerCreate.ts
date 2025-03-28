@@ -1,6 +1,10 @@
 import type { CreatePostDto } from './CreatePostDto.ts'
+import type { CreatePostResponse } from './CreatePostResponse.ts'
 
-export type PostsControllerCreate201 = any
+/**
+ * @description Created Post
+ */
+export type PostsControllerCreate201 = CreatePostResponse
 
 export type PostsControllerCreateMutationRequest = CreatePostDto
 
