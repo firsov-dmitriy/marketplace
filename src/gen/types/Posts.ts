@@ -1,7 +1,7 @@
 import type { CreatePostResponseData } from './CreatePostResponseData.ts'
 import type { MetaDto } from './MetaDto.ts'
 
-export type GetPostResponse = {
+export type Posts = {
   /**
    * @type array
    */

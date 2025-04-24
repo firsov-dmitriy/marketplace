@@ -3,3 +3,4 @@ export { SignIn } from "./SignIn";
 export { CreatePost } from "./CreatePost";
 export { Main } from "./Main";
 export { Posts } from "./Posts";
+export { Profile } from "./Profile";

@@ -2,6 +2,8 @@ export type { AuthControllerCreateMutationKey } from './Auth/useAuthControllerCr
 export type { AuthControllerGetProfileQueryKey } from './Auth/useAuthControllerGetProfile.ts'
 export type { AuthControllerGetProfileSuspenseQueryKey } from './Auth/useAuthControllerGetProfileSuspense.ts'
 export type { AuthControllerLoginMutationKey } from './Auth/useAuthControllerLogin.ts'
+export type { AuthControllerLogoutMutationKey } from './Auth/useAuthControllerLogout.ts'
+export type { AuthControllerRefreshMutationKey } from './Auth/useAuthControllerRefresh.ts'
 export type { AuthControllerResetPasswordMutationKey } from './Auth/useAuthControllerResetPassword.ts'
 export type { AuthControllerResetPasswordConfirmMutationKey } from './Auth/useAuthControllerResetPasswordConfirm.ts'
 export type { FilesControllerFindAllQueryKey } from './Files/useFilesControllerFindAll.ts'
@@ -30,6 +32,8 @@ export {
   useAuthControllerGetProfileSuspense,
 } from './Auth/useAuthControllerGetProfileSuspense.ts'
 export { authControllerLoginMutationKey, useAuthControllerLogin } from './Auth/useAuthControllerLogin.ts'
+export { authControllerLogoutMutationKey, useAuthControllerLogout } from './Auth/useAuthControllerLogout.ts'
+export { authControllerRefreshMutationKey, useAuthControllerRefresh } from './Auth/useAuthControllerRefresh.ts'
 export { authControllerResetPasswordMutationKey, useAuthControllerResetPassword } from './Auth/useAuthControllerResetPassword.ts'
 export { authControllerResetPasswordConfirmMutationKey, useAuthControllerResetPasswordConfirm } from './Auth/useAuthControllerResetPasswordConfirm.ts'
 export { filesControllerFindAllQueryKey, filesControllerFindAllQueryOptions, useFilesControllerFindAll } from './Files/useFilesControllerFindAll.ts'

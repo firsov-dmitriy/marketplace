@@ -4,30 +4,30 @@ import { FormProvider, useForm } from "react-hook-form";
 import { FormTextField } from "../../ui";
 import { LoginAuthDto, useAuthControllerLogin } from "../../gen";
 import { useCallback } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { useAuth } from "../../components/Auth";
 
 export const SignIn = () => {
   const form = useForm<LoginAuthDto>();
   const navigate = useNavigate();
   const { mutateAsync } = useAuthControllerLogin();
+  const { search } = useLocation();
+  const { login } = useAuth();
+  const backPath = new URLSearchParams(search).get("back") || "/";
 
   const onSubmit = useCallback(
     async (data: LoginAuthDto) => {
       try {
-        const response = await mutateAsync({
-          data: {
-            ...data,
-          },
+        await mutateAsync({
+          data,
         });
-        console.log(response);
-        localStorage?.setItem("accessToken", response.data.accessToken);
-        // localStorage?.setItem("refreshToken", response.data.refreshToken);
-        navigate("/create-post");
+        login();
+        navigate(backPath, { replace: true });
       } catch (error) {
         console.warn(error);
       }
     },
-    [mutateAsync, navigate],
+    [backPath, login, mutateAsync, navigate],
   );
   return (
     <FormProvider {...form}>

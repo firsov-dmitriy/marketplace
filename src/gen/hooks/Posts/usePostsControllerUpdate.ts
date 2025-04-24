@@ -1,10 +1,10 @@
-import client from '../../../axiosClient.ts'
-import type { RequestConfig } from '../../../axiosClient.ts'
+import client from '@/axiosClient.ts'
 import type {
   PostsControllerUpdateMutationRequest,
   PostsControllerUpdateMutationResponse,
   PostsControllerUpdatePathParams,
 } from '../../types/PostsControllerUpdate.ts'
+import type { RequestConfig } from '@/axiosClient.ts'
 import type { UseMutationOptions } from '@tanstack/react-query'
 import { useMutation } from '@tanstack/react-query'
 

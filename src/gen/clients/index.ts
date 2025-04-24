@@ -1,6 +1,8 @@
 export { authControllerCreate } from './authControllerCreate.ts'
 export { authControllerGetProfile } from './authControllerGetProfile.ts'
 export { authControllerLogin } from './authControllerLogin.ts'
+export { authControllerLogout } from './authControllerLogout.ts'
+export { authControllerRefresh } from './authControllerRefresh.ts'
 export { authControllerResetPassword } from './authControllerResetPassword.ts'
 export { authControllerResetPasswordConfirm } from './authControllerResetPasswordConfirm.ts'
 export { filesControllerFindAll } from './filesControllerFindAll.ts'

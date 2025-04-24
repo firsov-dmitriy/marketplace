@@ -1,10 +1,7 @@
-import axios from "axios";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import { InvalidTokenResponseEnum } from "./gen";
+import { LocalStorageService } from "@/services";
 
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-
-/**
- * Subset of AxiosRequestConfig
- */
 export type RequestConfig<TData = unknown> = {
   url?: string;
   method: "GET" | "PUT" | "PATCH" | "POST" | "DELETE";
@@ -20,9 +17,7 @@ export type RequestConfig<TData = unknown> = {
   signal?: AbortSignal;
   headers?: AxiosRequestConfig["headers"];
 };
-/**
- * Subset of AxiosResponse
- */
+
 export type ResponseConfig<TData = unknown> = {
   data: TData;
   status: number;
@@ -32,8 +27,51 @@ export type ResponseConfig<TData = unknown> = {
 
 export const axiosInstance = axios.create({
   timeout: 1000,
+  withCredentials: true,
 });
 
+let isRefreshing = false;
+const failedQueue: {
+  resolve: (value?: AxiosResponse) => void;
+  reject: (error: unknown) => void;
+}[] = [];
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error: AxiosError<{ message: InvalidTokenResponseEnum }>) => {
+    const originalRequest = error.config as AxiosRequestConfig & {
+      _retry?: boolean;
+    };
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      if (
+        error.response.data?.message === "EXPIRED" &&
+        window.location.pathname !== "/sign-in"
+      ) {
+        window.location.href = "/sign-in";
+      } else if (isRefreshing) {
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
+        }).then(() => axiosInstance(originalRequest));
+      } else if (window.location.pathname !== "/sign-in") {
+        LocalStorageService.clearProfile();
+        window.location.href = "/sign-in";
+      }
+
+      originalRequest._retry = true;
+      isRefreshing = true;
+    }
+
+    return Promise.reject({
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      headers: error.response?.headers,
+      data: error.response?.data,
+    });
+  },
+);
+
+// ✅ Универсальный клиент с правильной типизацией
 export const axiosClient = async <
   TData,
   TError = unknown,
@@ -41,26 +79,28 @@ export const axiosClient = async <
 >(
   config: RequestConfig<TVariables>,
 ): Promise<ResponseConfig<TData>> => {
-  const promise = axiosInstance
-    .request<TVariables, ResponseConfig<TData>>({ ...config })
-    .catch((e: AxiosError<TError>) => {
-      throw e;
+  try {
+    const response = await axiosInstance.request<
+      TVariables,
+      AxiosResponse<TData>
+    >({
+      ...config,
     });
 
-  return promise;
+    return {
+      data: response.data,
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+    };
+  } catch (err) {
+    throw err as {
+      status?: number;
+      statusText?: string;
+      headers?: Record<string, string>;
+      data?: TError;
+    };
+  }
 };
-
-axiosInstance.interceptors.request.use(
-  (config) => {
-    // Do something before request is sent
-
-    config.headers["Authorization"] =
-      `Bearer ${localStorage.getItem("accessToken")}`;
-    return config;
-  },
-  (error) => {
-    Promise.reject(error);
-  },
-);
 
 export default axiosClient;

@@ -1,9 +1,9 @@
-import type { GetPostResponse } from './GetPostResponse.ts'
+import type { Posts } from './Posts.ts'
 
 /**
  * @description Posts list
  */
-export type PostsControllerFindAll200 = GetPostResponse
+export type PostsControllerFindAll200 = Posts
 
 export type PostsControllerFindAllQueryResponse = PostsControllerFindAll200
 

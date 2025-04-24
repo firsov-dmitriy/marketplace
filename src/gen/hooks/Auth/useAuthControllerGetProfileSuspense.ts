@@ -1,6 +1,6 @@
-import client from '../../../axiosClient.ts'
-import type { RequestConfig } from '../../../axiosClient.ts'
-import type { AuthControllerGetProfileQueryResponse } from '../../types/AuthControllerGetProfile.ts'
+import client from '@/axiosClient.ts'
+import type { AuthControllerGetProfileQueryResponse, AuthControllerGetProfile401 } from '../../types/AuthControllerGetProfile.ts'
+import type { RequestConfig } from '@/axiosClient.ts'
 import type { QueryKey, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 
@@ -12,7 +12,7 @@ export type AuthControllerGetProfileSuspenseQueryKey = ReturnType<typeof authCon
  * {@link /api/auth/profile}
  */
 async function authControllerGetProfile(config: Partial<RequestConfig> = {}) {
-  const res = await client<AuthControllerGetProfileQueryResponse, Error, unknown>({ method: 'GET', url: `/api/auth/profile`, ...config })
+  const res = await client<AuthControllerGetProfileQueryResponse, AuthControllerGetProfile401, unknown>({ method: 'GET', url: `/api/auth/profile`, ...config })
   return res.data
 }
 
@@ -36,7 +36,7 @@ export function useAuthControllerGetProfileSuspense<
   TQueryKey extends QueryKey = AuthControllerGetProfileSuspenseQueryKey,
 >(
   options: {
-    query?: Partial<UseSuspenseQueryOptions<AuthControllerGetProfileQueryResponse, Error, TData, TQueryKey>>
+    query?: Partial<UseSuspenseQueryOptions<AuthControllerGetProfileQueryResponse, AuthControllerGetProfile401, TData, TQueryKey>>
     client?: Partial<RequestConfig>
   } = {},
 ) {
@@ -47,7 +47,7 @@ export function useAuthControllerGetProfileSuspense<
     ...(authControllerGetProfileSuspenseQueryOptions(config) as unknown as UseSuspenseQueryOptions),
     queryKey,
     ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
-  }) as UseSuspenseQueryResult<TData, Error> & { queryKey: TQueryKey }
+  }) as UseSuspenseQueryResult<TData, AuthControllerGetProfile401> & { queryKey: TQueryKey }
 
   query.queryKey = queryKey as TQueryKey
 

@@ -3,16 +3,23 @@ import { pluginReactQuery } from "@kubb/plugin-react-query";
 import { pluginOas } from "@kubb/plugin-oas";
 import { pluginTs } from "@kubb/plugin-ts";
 import { pluginClient } from "@kubb/plugin-client";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 export default defineConfig(() => {
+  const docsUrl = process.env.VITE_DOCS_URL as string;
+  const outputPath = process.env.VITE_OUTPUT_PATH as string;
+  const clientPath = process.env.VITE_CLIENT_PATH;
+
+  console.log(docsUrl, outputPath, clientPath);
   return {
     root: ".",
 
     input: {
-      path: `https://nest-profile-v2.vercel.app/api/docs`,
+      path: docsUrl,
     },
     output: {
-      path: "./src/gen",
+      path: outputPath,
       clean: true,
     },
     plugins: [
@@ -30,7 +37,7 @@ export default defineConfig(() => {
           path: "hooks",
         },
         client: {
-          importPath: "../../../axiosClient.ts",
+          importPath: clientPath,
         },
       }),
     ],

@@ -1,6 +1,6 @@
-import client from '../../../axiosClient.ts'
-import type { RequestConfig } from '../../../axiosClient.ts'
+import client from '@/axiosClient.ts'
 import type { ProductsControllerFindAllQueryResponse } from '../../types/ProductsControllerFindAll.ts'
+import type { RequestConfig } from '@/axiosClient.ts'
 import type { QueryKey, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 

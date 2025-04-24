@@ -1,6 +1,6 @@
-import client from '../../../axiosClient.ts'
-import type { RequestConfig } from '../../../axiosClient.ts'
-import type { AuthControllerGetProfileQueryResponse } from '../../types/AuthControllerGetProfile.ts'
+import client from '@/axiosClient.ts'
+import type { AuthControllerGetProfileQueryResponse, AuthControllerGetProfile401 } from '../../types/AuthControllerGetProfile.ts'
+import type { RequestConfig } from '@/axiosClient.ts'
 import type { QueryKey, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
 import { queryOptions, useQuery } from '@tanstack/react-query'
 
@@ -12,7 +12,7 @@ export type AuthControllerGetProfileQueryKey = ReturnType<typeof authControllerG
  * {@link /api/auth/profile}
  */
 async function authControllerGetProfile(config: Partial<RequestConfig> = {}) {
-  const res = await client<AuthControllerGetProfileQueryResponse, Error, unknown>({ method: 'GET', url: `/api/auth/profile`, ...config })
+  const res = await client<AuthControllerGetProfileQueryResponse, AuthControllerGetProfile401, unknown>({ method: 'GET', url: `/api/auth/profile`, ...config })
   return res.data
 }
 
@@ -36,7 +36,7 @@ export function useAuthControllerGetProfile<
   TQueryKey extends QueryKey = AuthControllerGetProfileQueryKey,
 >(
   options: {
-    query?: Partial<QueryObserverOptions<AuthControllerGetProfileQueryResponse, Error, TData, TQueryData, TQueryKey>>
+    query?: Partial<QueryObserverOptions<AuthControllerGetProfileQueryResponse, AuthControllerGetProfile401, TData, TQueryData, TQueryKey>>
     client?: Partial<RequestConfig>
   } = {},
 ) {
@@ -47,7 +47,7 @@ export function useAuthControllerGetProfile<
     ...(authControllerGetProfileQueryOptions(config) as unknown as QueryObserverOptions),
     queryKey,
     ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
-  }) as UseQueryResult<TData, Error> & { queryKey: TQueryKey }
+  }) as UseQueryResult<TData, AuthControllerGetProfile401> & { queryKey: TQueryKey }
 
   query.queryKey = queryKey as TQueryKey
 

@@ -1,0 +1,1 @@
+{"type":"object","properties":{"message":{"example":"INVALID","description":"The error code for the token status.","type":"string","enum":["EXPIRED","INVALID"],"x-readme-ref-name":"InvalidTokenResponseEnum"},"description":{"type":"string","description":"Description of the error."}},"required":["message","description"],"x-readme-ref-name":"InvalidTokenResponse"}
