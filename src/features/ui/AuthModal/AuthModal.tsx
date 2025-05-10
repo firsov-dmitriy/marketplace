@@ -123,12 +123,6 @@ export const AuthModal = forwardRef<IAuthModalRef, IAuthModalProps>(
               >
                 Зарегистрироваться
               </Button>
-              <Button
-                className="text-xs transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer"
-                variant="unstyled"
-              >
-                Еще нет акаунта?
-              </Button>
             </div>
           </form>
         </FormProvider>

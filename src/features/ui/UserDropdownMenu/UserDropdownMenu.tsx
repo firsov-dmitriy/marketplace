@@ -1,6 +1,6 @@
-import { Button } from "@/ui";
-import { Popover } from "@/ui/Popover/Popover.tsx";
-import { IUserDropdownMenuProps } from "@/features/ui/UserDropdownMenu/types.ts";
+import { Button, Popover } from "@/ui";
+
+import { IUserDropdownMenuProps } from "./types.ts";
 import { useAuth } from "@/components/Auth";
 import { useNavigate } from "react-router";
 

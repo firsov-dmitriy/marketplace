@@ -4,9 +4,8 @@ import { useAuth } from "@/components/Auth";
 
 import { useRef } from "react";
 
-import { AuthModal } from "@/features/ui/AuthModal/AuthModal.tsx";
-import { IAuthModalRef } from "@/features/ui/AuthModal/types.ts";
 import { UserDropdownMenu } from "@/features/ui/UserDropdownMenu";
+import { AuthModal, IAuthModalRef } from "@/features/ui/AuthModal";
 
 export const UserAction = () => {
   const authModalRef = useRef<IAuthModalRef>(null);
