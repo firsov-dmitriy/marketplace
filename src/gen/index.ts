@@ -26,7 +26,7 @@ export type { ProductsControllerRemoveMutationKey } from './hooks/Products/usePr
 export type { ProductsControllerUpdateMutationKey } from './hooks/Products/useProductsControllerUpdate.ts'
 export type {
   AuthControllerCreate201,
-  AuthControllerCreate400,
+  AuthControllerCreate401,
   AuthControllerCreateMutationRequest,
   AuthControllerCreateMutationResponse,
   AuthControllerCreateMutation,
@@ -39,7 +39,7 @@ export type {
 } from './types/AuthControllerGetProfile.ts'
 export type {
   AuthControllerLogin200,
-  AuthControllerLogin400,
+  AuthControllerLogin401,
   AuthControllerLoginMutationRequest,
   AuthControllerLoginMutationResponse,
   AuthControllerLoginMutation,

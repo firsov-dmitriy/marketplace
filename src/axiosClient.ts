@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { InvalidTokenResponseEnum } from "./gen";
+import { authControllerRefresh, InvalidTokenResponseEnum } from "./gen";
 import { LocalStorageService } from "@/services";
 
 export type RequestConfig<TData = unknown> = {
@@ -38,40 +38,56 @@ const failedQueue: {
 
 axiosInstance.interceptors.response.use(
   (response) => response,
-  async (error: AxiosError<{ message: InvalidTokenResponseEnum }>) => {
+  async (
+    error: AxiosError<{ message?: InvalidTokenResponseEnum | string }>,
+  ) => {
     const originalRequest = error.config as AxiosRequestConfig & {
       _retry?: boolean;
     };
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      if (
-        error.response.data?.message === "EXPIRED" &&
-        window.location.pathname !== "/sign-in"
-      ) {
-        window.location.href = "/sign-in";
-      } else if (isRefreshing) {
-        return new Promise((resolve, reject) => {
-          failedQueue.push({ resolve, reject });
-        }).then(() => axiosInstance(originalRequest));
-      } else if (window.location.pathname !== "/sign-in") {
-        LocalStorageService.clearProfile();
-        window.location.href = "/sign-in";
-      }
-
-      originalRequest._retry = true;
-      isRefreshing = true;
+    // Проброс message в error.message для всех ошибок
+    if (
+      error.response?.data?.message &&
+      typeof error.response.data.message === "string"
+    ) {
+      error.message = error.response.data.message;
     }
 
-    return Promise.reject({
-      status: error.response?.status,
-      statusText: error.response?.statusText,
-      headers: error.response?.headers,
-      data: error.response?.data,
-    });
+    if (error.response?.status === 401) {
+      const errorMessage = error.response.data?.message;
+
+      if (errorMessage === "EXPIRED" && !originalRequest._retry) {
+        originalRequest._retry = true;
+
+        try {
+          if (!isRefreshing) {
+            isRefreshing = true;
+            await authControllerRefresh(); // обновляем токены
+            isRefreshing = false;
+            failedQueue.forEach((req) => req.resolve());
+            failedQueue.length = 0;
+          } else {
+            await new Promise((resolve, reject) => {
+              failedQueue.push({ resolve, reject });
+            });
+          }
+
+          return axiosInstance(originalRequest);
+        } catch (refreshError) {
+          LocalStorageService.clearProfile();
+          window.location.href = "/sign-in";
+          return Promise.reject(refreshError);
+        }
+      }
+
+      // Пробрасываем ошибку, если это не EXPIRED
+      return Promise.reject(error);
+    }
+
+    return Promise.reject(error);
   },
 );
 
-// ✅ Универсальный клиент с правильной типизацией
 export const axiosClient = async <
   TData,
   TError = unknown,
@@ -94,12 +110,7 @@ export const axiosClient = async <
       headers: response.headers,
     };
   } catch (err) {
-    throw err as {
-      status?: number;
-      statusText?: string;
-      headers?: Record<string, string>;
-      data?: TError;
-    };
+    throw err as AxiosError<TError>;
   }
 };
 

@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { Header } from "../../modules";
 import { Box, Button } from "@mui/material";
-import { FormTextField } from "../../ui";
+import { FormField } from "../../ui";
 import { CreatePostDto, usePostsControllerCreate } from "../../gen";
 import { useCallback } from "react";
 
@@ -48,9 +48,9 @@ export const CreatePost = () => {
               border: "1px solid lightgray",
             }}
           >
-            <FormTextField name="title" label="Название" />
-            <FormTextField name="text" label="Текс" multiline />
-            <FormTextField name="imageUrl" label="Ссылка на фото" multiline />
+            <FormField name="title" label="Название" />
+            <FormField name="text" label="Текс" />
+            <FormField name="imageUrl" label="Ссылка на фото" />
 
             <Button variant="contained" type="submit">
               Создать пост

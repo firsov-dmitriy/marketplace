@@ -1,7 +1,7 @@
 import { Header } from "../../modules";
 import { Box, Button } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
-import { FormTextField } from "../../ui";
+import { FormField } from "@/ui";
 import { LoginAuthDto, useAuthControllerLogin } from "../../gen";
 import { useCallback } from "react";
 import { useLocation, useNavigate } from "react-router";
@@ -51,8 +51,8 @@ export const SignIn = () => {
               border: "1px solid lightgray",
             }}
           >
-            <FormTextField name="email" label="Email" />
-            <FormTextField name="password" label="Пароль" />
+            <FormField name="email" label="Email" />
+            <FormField name="password" label="Пароль" />
             <Button variant="contained" type="submit">
               Войти
             </Button>

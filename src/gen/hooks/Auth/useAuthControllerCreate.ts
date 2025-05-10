@@ -1,5 +1,5 @@
 import client from '@/axiosClient.ts'
-import type { AuthControllerCreateMutationRequest, AuthControllerCreateMutationResponse, AuthControllerCreate400 } from '../../types/AuthControllerCreate.ts'
+import type { AuthControllerCreateMutationRequest, AuthControllerCreateMutationResponse, AuthControllerCreate401 } from '../../types/AuthControllerCreate.ts'
 import type { RequestConfig } from '@/axiosClient.ts'
 import type { UseMutationOptions } from '@tanstack/react-query'
 import { useMutation } from '@tanstack/react-query'
@@ -12,7 +12,7 @@ export type AuthControllerCreateMutationKey = ReturnType<typeof authControllerCr
  * {@link /api/auth/sign-up}
  */
 async function authControllerCreate(data: AuthControllerCreateMutationRequest, config: Partial<RequestConfig<AuthControllerCreateMutationRequest>> = {}) {
-  const res = await client<AuthControllerCreateMutationResponse, AuthControllerCreate400, AuthControllerCreateMutationRequest>({
+  const res = await client<AuthControllerCreateMutationResponse, AuthControllerCreate401, AuthControllerCreateMutationRequest>({
     method: 'POST',
     url: `/api/auth/sign-up`,
     data,
@@ -26,14 +26,14 @@ async function authControllerCreate(data: AuthControllerCreateMutationRequest, c
  */
 export function useAuthControllerCreate(
   options: {
-    mutation?: UseMutationOptions<AuthControllerCreateMutationResponse, AuthControllerCreate400, { data: AuthControllerCreateMutationRequest }>
+    mutation?: UseMutationOptions<AuthControllerCreateMutationResponse, AuthControllerCreate401, { data: AuthControllerCreateMutationRequest }>
     client?: Partial<RequestConfig<AuthControllerCreateMutationRequest>>
   } = {},
 ) {
   const { mutation: mutationOptions, client: config = {} } = options ?? {}
   const mutationKey = mutationOptions?.mutationKey ?? authControllerCreateMutationKey()
 
-  return useMutation<AuthControllerCreateMutationResponse, AuthControllerCreate400, { data: AuthControllerCreateMutationRequest }>({
+  return useMutation<AuthControllerCreateMutationResponse, AuthControllerCreate401, { data: AuthControllerCreateMutationRequest }>({
     mutationFn: async ({ data }) => {
       return authControllerCreate(data, config)
     },

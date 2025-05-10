@@ -1,5 +1,5 @@
 import client from '@/axiosClient.ts'
-import type { AuthControllerLoginMutationRequest, AuthControllerLoginMutationResponse, AuthControllerLogin400 } from '../../types/AuthControllerLogin.ts'
+import type { AuthControllerLoginMutationRequest, AuthControllerLoginMutationResponse, AuthControllerLogin401 } from '../../types/AuthControllerLogin.ts'
 import type { RequestConfig } from '@/axiosClient.ts'
 import type { UseMutationOptions } from '@tanstack/react-query'
 import { useMutation } from '@tanstack/react-query'
@@ -12,7 +12,7 @@ export type AuthControllerLoginMutationKey = ReturnType<typeof authControllerLog
  * {@link /api/auth/sign-in}
  */
 async function authControllerLogin(data: AuthControllerLoginMutationRequest, config: Partial<RequestConfig<AuthControllerLoginMutationRequest>> = {}) {
-  const res = await client<AuthControllerLoginMutationResponse, AuthControllerLogin400, AuthControllerLoginMutationRequest>({
+  const res = await client<AuthControllerLoginMutationResponse, AuthControllerLogin401, AuthControllerLoginMutationRequest>({
     method: 'POST',
     url: `/api/auth/sign-in`,
     data,
@@ -26,14 +26,14 @@ async function authControllerLogin(data: AuthControllerLoginMutationRequest, con
  */
 export function useAuthControllerLogin(
   options: {
-    mutation?: UseMutationOptions<AuthControllerLoginMutationResponse, AuthControllerLogin400, { data: AuthControllerLoginMutationRequest }>
+    mutation?: UseMutationOptions<AuthControllerLoginMutationResponse, AuthControllerLogin401, { data: AuthControllerLoginMutationRequest }>
     client?: Partial<RequestConfig<AuthControllerLoginMutationRequest>>
   } = {},
 ) {
   const { mutation: mutationOptions, client: config = {} } = options ?? {}
   const mutationKey = mutationOptions?.mutationKey ?? authControllerLoginMutationKey()
 
-  return useMutation<AuthControllerLoginMutationResponse, AuthControllerLogin400, { data: AuthControllerLoginMutationRequest }>({
+  return useMutation<AuthControllerLoginMutationResponse, AuthControllerLogin401, { data: AuthControllerLoginMutationRequest }>({
     mutationFn: async ({ data }) => {
       return authControllerLogin(data, config)
     },

@@ -1,10 +1,10 @@
-import { Header } from "../../modules";
+import { Header } from "@/modules";
 import { Box, Button } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
-import { FormTextField } from "../../ui";
-import { useAuthControllerCreate } from "../../gen";
+import { useAuthControllerCreate } from "@/gen";
 import { useCallback } from "react";
 import { useNavigate } from "react-router";
+import { FormField } from "@/ui";
 
 type SignUpForm = {
   email: string;
@@ -53,8 +53,8 @@ export const SignUp = () => {
               border: "1px solid lightgray",
             }}
           >
-            <FormTextField name="email" label="Email" />
-            <FormTextField name="password" label="Пароль" />
+            <FormField name="email" label="Email" />
+            <FormField name="password" label="Пароль" />
             <Button variant="contained" type="submit">
               Зарегистрироватся
             </Button>

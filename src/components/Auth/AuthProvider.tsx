@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   } = useAuthControllerGetProfile({
     query: {
       retry: false,
-      enabled: Boolean(isAuthenticate && !loading), // Запрашиваем только если пользователь аутентифицирован и нет загрузки
+      enabled: Boolean(isAuthenticate && !loading),
     },
   });
 
@@ -47,6 +47,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
     try {
       const data = await refetch();
+      console.log(profileData);
       if (data.data?.data) {
         setProfile(data.data?.data);
         setIsAuthenticate(true);

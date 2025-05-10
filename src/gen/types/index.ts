@@ -1,6 +1,6 @@
 export type {
   AuthControllerCreate201,
-  AuthControllerCreate400,
+  AuthControllerCreate401,
   AuthControllerCreateMutationRequest,
   AuthControllerCreateMutationResponse,
   AuthControllerCreateMutation,
@@ -13,7 +13,7 @@ export type {
 } from './AuthControllerGetProfile.ts'
 export type {
   AuthControllerLogin200,
-  AuthControllerLogin400,
+  AuthControllerLogin401,
   AuthControllerLoginMutationRequest,
   AuthControllerLoginMutationResponse,
   AuthControllerLoginMutation,
